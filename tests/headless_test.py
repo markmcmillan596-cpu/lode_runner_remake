@@ -79,6 +79,7 @@ love.math = {random = function(a, b)
   if not b then return math.random(a) end
   return math.random(a, b) end}
 love.event = obj{}
+love.keyboard = obj{isDown = function() return false end}
 """)
 
 Atlas = lua.eval('require("assets.atlas")')
