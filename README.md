@@ -16,7 +16,7 @@ All four seasons are built, with identical sprite and sound names so the game co
 ## Run the viewer
 
 ```
-love .
+love . viewer
 ```
 
 TAB switches title / level / sprite sheet. T changes season (with the between-level
@@ -26,7 +26,10 @@ circle wipe). S plays each effect in turn. M toggles music. E shows the escape l
 
 ```
 lode-runner/
-  conf.lua, main.lua         asset viewer
+  conf.lua                   window setup
+  main.lua                   the game (`love .`); `love . viewer` runs the viewer
+  viewer.lua                 asset viewer
+  game/runner.lua            runner physics (no Love2D calls)
   assets/
     atlas.lua                sprites, grid, animations, HUD layout
     level.lua                level loader and terrain drawing

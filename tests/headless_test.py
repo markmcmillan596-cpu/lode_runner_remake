@@ -146,7 +146,7 @@ for label, text in bad.items():
         print("  rejects %-12s -> %s" % (label, str(msg).split(": ", 1)[-1]))
 
 # Run the viewer: load, then 20 s of frames with every key pressed along the way.
-lua.execute('dofile("main.lua")')
+lua.execute('dofile("viewer.lua")')
 lua.execute("love.load()")
 keys = ["tab", "tab", "tab", "e", "m", "m"] + ["s"] * 15 + ["t"] + ["e"]
 frames = 1200
@@ -165,6 +165,15 @@ end)()""")
 print("viewer: %d frames, all keys pressed, final theme %s" % (frames, current))
 if len(available) > 1 and current == available[0]:
     problems.append("theme switch (T + circle wipe) did not change the theme")
+
+# Run the game (main.lua) for a few seconds of frames, also with the viewer switch.
+lua.execute('dofile("main.lua")')
+lua.execute("love.load()")
+for i in range(300):
+    lua.globals().love.update(1 / 60)
+    lua.globals().love.draw()
+lua.globals().love.keypressed("r")
+print("game: 300 frames ran, restart OK")
 
 if problems:
     print("\nPROBLEMS:")
